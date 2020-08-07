@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-07 08:43:56
  * @LastEditors: Future Meng
- * @LastEditTime: 2020-08-07 11:22:26
+ * @LastEditTime: 2020-08-07 11:52:28
  */
 "use strict";
 
@@ -103,45 +103,45 @@ console.log(printer.getPrinterDriverOptions("Deli_DL_886AW"));
 
 console.log(printer.getDefaultPrinterName());
 
-var util = require("util"),
-  printerName = "Deli_DL_886AW",
-  printerFormat = "TEXT";
+// var util = require("util"),
+//   printerName = "Deli_DL_886AW",
+//   printerFormat = "TEXT";
 
-printer.printDirect({
-  data: "print from Node.JS buffer", // or simple String: "some text"
-  printer: printerName, // printer name
-  type: printerFormat, // type: RAW, TEXT, PDF, JPEG, .. depends on platform
-  // supported page sizes may be retrieved using getPrinterDriverOptions, supports CUPS printing options
-  options: {
-    media: "4*6",
-    "fit-to-page": true,
-  },
-  success: function(jobID) {
-    console.log("sent to printer with ID: " + jobID);
-    var jobInfo = printer.getJob(printerName, jobID);
-    console.log(
-      "current job info:" + util.inspect(jobInfo, { depth: 10, colors: true })
-    );
-    // if (jobInfo.status.indexOf("PRINTED") !== -1) {
-    //   console.log("too late, already printed");
-    //   return;
-    // }
-    // console.log("cancelling...");
-    // var is_ok = printer.setJob(printerName, jobID, "CANCEL");
-    // console.log("cancelled: " + is_ok);
-    // try {
-    //   console.log(
-    //     "current job info:" +
-    //       util.inspect(printer.getJob(printerName, jobID), {
-    //         depth: 10,
-    //         colors: true,
-    //       })
-    //   );
-    // } catch (err) {
-    //   console.log("job deleted. err:" + err);
-    // }
-  },
-  error: function(err) {
-    console.log(err);
-  },
-});
+// printer.printDirect({
+//   data: "print from Node.JS buffer", // or simple String: "some text"
+//   printer: printerName, // printer name
+//   type: printerFormat, // type: RAW, TEXT, PDF, JPEG, .. depends on platform
+//   // supported page sizes may be retrieved using getPrinterDriverOptions, supports CUPS printing options
+//   options: {
+//     media: "4*6",
+//     "fit-to-page": true,
+//   },
+//   success: function(jobID) {
+//     console.log("sent to printer with ID: " + jobID);
+//     var jobInfo = printer.getJob(printerName, jobID);
+//     console.log(
+//       "current job info:" + util.inspect(jobInfo, { depth: 10, colors: true })
+//     );
+//     // if (jobInfo.status.indexOf("PRINTED") !== -1) {
+//     //   console.log("too late, already printed");
+//     //   return;
+//     // }
+//     // console.log("cancelling...");
+//     // var is_ok = printer.setJob(printerName, jobID, "CANCEL");
+//     // console.log("cancelled: " + is_ok);
+//     // try {
+//     //   console.log(
+//     //     "current job info:" +
+//     //       util.inspect(printer.getJob(printerName, jobID), {
+//     //         depth: 10,
+//     //         colors: true,
+//     //       })
+//     //   );
+//     // } catch (err) {
+//     //   console.log("job deleted. err:" + err);
+//     // }
+//   },
+//   error: function(err) {
+//     console.log(err);
+//   },
+// });
