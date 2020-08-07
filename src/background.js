@@ -1,3 +1,8 @@
+/*
+ * @Date: 2020-08-07 08:43:56
+ * @LastEditors: Future Meng
+ * @LastEditTime: 2020-08-07 10:50:02
+ */
 'use strict'
 
 import { app, protocol, BrowserWindow } from 'electron'
@@ -87,3 +92,8 @@ if (isDevelopment) {
     })
   }
 }
+
+
+const printer = require("@thiagoelg/node-printer");
+
+console.log(printer.getPrinters());
