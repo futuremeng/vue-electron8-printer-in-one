@@ -1,13 +1,16 @@
 /*
  * @Date: 2020-08-07 08:43:56
  * @LastEditors: Future Meng
- * @LastEditTime: 2020-08-07 11:52:28
+ * @LastEditTime: 2020-08-07 16:17:30
  */
 "use strict";
 
 import { app, protocol, BrowserWindow } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
+
+// import ipcMainEvents from './backgrounds/events'
+
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -93,15 +96,15 @@ if (isDevelopment) {
   }
 }
 
-const printer = require("@thiagoelg/node-printer");
+// const printer = require("@thiagoelg/node-printer");
 
-console.log(printer.getPrinters());
+// console.log(printer.getPrinters());
 
-console.log(printer.getPrinter("Deli_DL_886AW"));
+// console.log(printer.getPrinter("Deli_DL_886AW"));
 
-console.log(printer.getPrinterDriverOptions("Deli_DL_886AW"));
+// console.log(printer.getPrinterDriverOptions("Deli_DL_886AW"));
 
-console.log(printer.getDefaultPrinterName());
+// console.log(printer.getDefaultPrinterName());
 
 // var util = require("util"),
 //   printerName = "Deli_DL_886AW",
@@ -145,3 +148,10 @@ console.log(printer.getDefaultPrinterName());
 //     console.log(err);
 //   },
 // });
+
+// 初始化事件监听  ipcMain.on event
+// Object.keys(ipcMainEvents).forEach(key => {
+//   ipcMain.on(key, (event, ...args) => {
+//     ipcMainEvents[key](event, winodws, ...args)
+//   })
+// })
