@@ -1,20 +1,27 @@
 /*
  * @Date: 2020-08-07 08:43:56
  * @LastEditors: Future Meng
- * @LastEditTime: 2020-08-07 16:17:30
+ * @LastEditTime: 2020-08-11 17:35:28
  */
 "use strict";
-
-import { app, protocol, BrowserWindow } from "electron";
+import * as path from "path";
+import { app, protocol, BrowserWindow, ipcMain } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
-
-// import ipcMainEvents from './backgrounds/events'
+// 获取所有ipcMain事件
+import ipcMainEvents from "./backgrounds/events";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
+
+global.$winodws = {
+  main: null,
+};
+
+const winodws = global.$winodws;
+
 let win;
 
 // Scheme must be registered before the app is ready
@@ -30,7 +37,7 @@ function createWindow() {
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      nodeIntegration: true, //  process.env.ELECTRON_NODE_INTEGRATION,
     },
   });
 
@@ -48,6 +55,8 @@ function createWindow() {
     win = null;
   });
 }
+
+app.allowRendererProcessReuse = true;
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
@@ -95,6 +104,15 @@ if (isDevelopment) {
     });
   }
 }
+
+console.log(ipcMainEvents);
+
+// 初始化事件监听  ipcMain.on event
+Object.keys(ipcMainEvents).forEach((key) => {
+  ipcMain.on(key, (event, ...args) => {
+    ipcMainEvents[key](event, winodws, ...args);
+  });
+});
 
 // const printer = require("@thiagoelg/node-printer");
 
