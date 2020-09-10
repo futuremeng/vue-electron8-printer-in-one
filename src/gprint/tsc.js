@@ -4,8 +4,8 @@ var jpPrinter = {
   createNew: function() {
     var jpPrinter = {};
     var data = "";
-    var command = [];
-    // var command = "";
+    // var command = [];
+    var command = "";
 
     jpPrinter.name = "标签模式";
 
@@ -13,13 +13,13 @@ var jpPrinter = {
 
     jpPrinter.addCommand = function(content) {
       // 将指令转成数组装起;
-      var code = new encode.TextEncoder("gb18030", {
-        NONSTANDARD_allowLegacyEncoding: true,
-      }).encode(content);
-      for (var i = 0; i < code.length; ++i) {
-        command.push(code[i]);
-      }
-      // command = command + content;
+      // var code = new encode.TextEncoder("gb18030", {
+      //   NONSTANDARD_allowLegacyEncoding: true,
+      // }).encode(content);
+      // for (var i = 0; i < code.length; ++i) {
+      //   command.push(code[i]);
+      // }
+      command = command + content;
     };
 
     jpPrinter.setSize = function(pageWidght, pageHeight) {
